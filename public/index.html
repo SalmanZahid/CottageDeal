@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="meanhotel">
+<head>
+  <title>MEAN hotel</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+  <navigation></navigation>
+
+  <div class="container">
+      <div ng-view></div>
+    </div>
+    
+  <footer class="footer">
+    <div class="container">
+      <!-- <p class="text-muted text-center">
+        <a href="#" target="_blank"><img src="/images/fullstacktraining_logo.png" height="26" alt="Full Stack Training"/></a>
+      </p> -->
+
+      <p class="text-muted text-center">
+        <small>&copy; 2018 Bhashani Technology Ltd</small>
+      </p>
+    </div>
+  </footer>
+
+  <script src="jquery/jquery-2.1.4.min.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="angular-app/app.js"></script>
+
+  <!-- #region Controllers -->
+  <script src="angular-app/hotels/hotelsController.js"></script>
+  <script src="angular-app/auth/login/loginController.js"></script>
+  <script src="angular-app/auth/registration/registrationController.js"></script>
+  <!-- #endregion -->
+
+  <!-- #region Factory -->
+  <script src="angular-app/hotels/factory/dataFactory.js"></script>
+  <script src="angular-app/auth/factory/AuthDataFactory.js"></script>
+  <script src="angular-app/auth/factory/AuthFactory.js"></script>
+  <!-- #endregion -->
+
+  <!-- #region Interceptors -->
+  <script src="angular-app/auth/interceptors/AuthInterceptor.js"></script>
+  <!-- #endregion -->
+
+  <!-- #region Directives -->
+  <script src="angular-app/hotels/directives/hotel-rating-directive.js"></script>
+  <script src="angular-app/navigation/directive/navigation.js"></script>
+  <!-- #endregion -->
+</body>
+</html>

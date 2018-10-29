@@ -1,0 +1,38 @@
+{
+  "name": "cottage-deal",
+  "version": "1.0.0",
+  "description": "MEAN stack practice",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalmanZahid/mean-hotel-app.git"
+  },
+  "author": "Salman Zahid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SalmanZahid/mean-hotel-app/issues"
+  },
+  "homepage": "https://github.com/SalmanZahid/mean-hotel-app#readme",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-route": "^1.5.6",
+    "aws-sdk": "^2.338.0",
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "crypto-random-string": "^1.0.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
+    "mongodb": "^3.0.2",
+    "mongoose": "^5.0.3",
+    "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.0.0"
+  }
+}

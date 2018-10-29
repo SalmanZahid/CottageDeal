@@ -1,0 +1,37 @@
+<h1>{{ vm.hotel.name }} 
+  <span ng-repeat="star in vm.stars track by $index" class="glyphicon glyphicon-star">{{ star }}</span>
+</h1>
+
+<p><small>{{ vm.hotel.location.address }}</small></p>
+
+<p>{{ vm.hotel.description }}</p>
+<p>This hotel offers the following services:</p>
+<ul>
+  <li ng-repeat="service in vm.hotel.services">{{ service }}</li>
+</ul>
+<h3>Reviews</h3>
+<ul>
+  <li ng-repeat="review in vm.hotel.reviews"> <strong>{{ review.name }} says:</strong> {{ review.review }}</li>
+</ul>
+
+
+<form name="reviewForm" ng-submit="vm.addReview()">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="name">Name</label>
+        <input type="text" name="name" ng-model="vm.reviewForm.name" class="form-control"  placeholder="Enter your name">
+      </div>
+      <div class="form-group col-md-4">
+        <label>Rating</label>
+        <input type="text" name="rating" class="form-control" required ng-pattern="/^[0-5]{1}$/" ng-model="vm.reviewForm.rating" placeholder="Give Rating From 0 to 5">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+        <label>Review</label>
+        <textarea class="form-control" ng-model="vm.reviewForm.review"  placeholder="Give your reviews here" ></textarea>
+      </div>
+    <div class="form-row">
+          <button type="submit" class="btn btn-primary">Submit</button>
+   </div>
+   
+  </form>

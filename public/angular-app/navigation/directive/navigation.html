@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="LoginController as vm">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#/">MeanHotel</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li ng-class="vm.isActiveTab('')"><a href="#/">Home</a></li>
+          <li ng-class="vm.isActiveTab('hotels')" ng-if='vm.isLoggedIn()'><a href="#/hotels">Hotels</a></li>
+          <li ng-class="vm.isActiveTab('register')" ng-if='!vm.isLoggedIn()'><a href="#/register">Register</a></li>
+          <li ng-class="vm.isActiveTab('profile')" ng-if='vm.isLoggedIn()'><a href="#/profile">Profile</a></li>
+        </ul>
+        <form  ng-if="!vm.isLoggedIn()" class="navbar-form navbar-right" ng-submit="vm.Login()" role="login">
+         <div class="form-group">
+           <input type="text" class="form-control input-sm" ng-model="vm.username" placeholder="Username"  autocapitalize="none">
+         </div>
+         <div class="form-group">
+           <input type="password" class="form-control input-sm" ng-model="vm.password" placeholder="Password"  autocapitalize="none">
+         </div>
+         <button type="submit" class="btn btn-sm btn-success">Login</button>
+       </form>
+       <ul ng-if="vm.isLoggedIn()" class="nav navbar-nav navbar-right">
+         <li><p class="navbar-text">Welcome back </p></li>
+         <li><button class="navbar-btn btn-sm btn-info" ng-click="vm.Logout()">Logout</button></li>
+       </ul>
+      </div>
+    </div>
+   </nav>
