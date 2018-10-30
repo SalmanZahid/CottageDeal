@@ -20,12 +20,11 @@ module.exports.verifyToken = (req, res, next) => {
 }
 
 module.exports.authenticateUser = (req, res, next) => {
-    next();
-
-    // UN-COMMENT TO APPLY AUTHORIZATION
-    // if (req.user) {
-    //     next();
-    // } else {
-    //     return res.status(401).json({ message: 'Unauthorized' });
-    // }
+    if (req.user) {
+        next();
+    } else {
+        return res.status(401).json({
+            message: 'Unauthorized'
+        });
+    }
 }
