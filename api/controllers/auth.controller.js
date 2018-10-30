@@ -79,7 +79,7 @@ const validateUser = (plainPassword, dbUser, res) => {
         };
 
         var token = jwt.sign(user, config.keys.secret, {
-            expiresIn: 3600
+            expiresIn: 86400
         });
         res.status(200).json({
             token: token

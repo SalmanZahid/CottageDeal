@@ -2,6 +2,10 @@ var mongoose = require('mongoose');
 var constants = require('../../constants');
 
 var dealSchema = mongoose.Schema({
+    dealId: {
+        type: mongoose.Schema.ObjectId,
+        auto: true
+    },
     name: {
         type: String,
         required: true
@@ -22,7 +26,14 @@ var dealSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    photos: [String],
+    images: [{
+        imageId: {
+            type: mongoose.Schema.ObjectId,
+            auto: true
+        },
+        imageUrl: String,
+        imageKey: String
+    }],
     availability: {
         type: [Date],
         required: true

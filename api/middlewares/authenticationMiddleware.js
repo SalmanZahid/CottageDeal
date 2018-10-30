@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken');
+const config = require('../settings/config');
 
 module.exports.verifyToken = (req, res, next) => {
     var token = req.headers['x-access-token'];
@@ -6,12 +7,12 @@ module.exports.verifyToken = (req, res, next) => {
         req.user = undefined;
         next();
     } else {
-        jwt.verify(token, 'LIMIT', function (err, decoded) {
+        jwt.verify(token, config.keys.secret, function (err, decoded) {
             if (err) {
                 req.user = undefined;
                 next();
             }
-
+            console.log(decoded);
             req.user = decoded;
             next();
         });

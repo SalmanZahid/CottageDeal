@@ -36,17 +36,41 @@ var upload = multer({
 // End for Multer configuration
 
 // API Routes
+
+// DEAL ROUTES
 router
     .route('/deals')
-    // .get(Auth.authenticateUser, DealController.dealsGetAll)
-    .post(Auth.authenticateUser, upload, DealController.dealsAddNew);
+    .get(Auth.authenticateUser, DealController.getAll)
+    .post(Auth.authenticateUser, upload, DealController.add);
 
-// router
-//     .route('/deals/:dealId')
-//     .get(Auth.authenticateUser, DealController.dealsGetOne)
-//     .put(Auth.authenticateUser, DealController.dealsUpdateOne)
-//     .delete(Auth.authenticateUser, DealController.dealsDeleteOne);
+router
+    .route('/deals/:dealId')
+    .get(Auth.authenticateUser, DealController.getById)
+    .put(Auth.authenticateUser, DealController.update)
+    .delete(Auth.authenticateUser, DealController.delete);
 
+router
+    .route('/deals/:dealId/pause')
+    .put(Auth.authenticateUser, DealController.pause);
+
+router
+    .route('/deals/:dealId/active')
+    .put(Auth.authenticateUser, DealController.active);
+
+router
+    .route('/deals/:dealId/inactive')
+    .put(Auth.authenticateUser, DealController.inActive);
+
+router
+    .route('/deals/:dealId/image/upload')
+    .put(Auth.authenticateUser, upload, DealController.upload);
+
+router
+    .route('/deals/:dealId/image/:imageId/remove')
+    .put(Auth.authenticateUser, DealController.removeImage);
+
+
+// AUTH Routes
 router
     .route('/signup')
     .post(AuthController.register);
@@ -55,13 +79,11 @@ router
     .route('/login')
     .post(AuthController.login);
 
+// User profile routes
 router
-    .route('/profile')
-    .get(UserProfileController.get);
-
-router
-    .route('/profile')
-    .post(UserProfileController.updateProfile);
+    .route('/me')
+    .get(Auth.authenticateUser, UserProfileController.get)
+    .put(Auth.authenticateUser, UserProfileController.updateProfile);
 
 router
     .route('/profile/updatePassword')
