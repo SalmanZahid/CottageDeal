@@ -7,8 +7,8 @@ var constants = require('../constants');
 const BUCKET_NAME = "cottage-deal-images";
 
 let s3bucket = new AWS.S3({
-    accessKeyId: "AKIAJJFQP54MT5AKCW7A",
-    secretAccessKey: "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",
+    accessKeyId: "",
+    secretAccessKey: "",
     Bucket: BUCKET_NAME
 });
 
