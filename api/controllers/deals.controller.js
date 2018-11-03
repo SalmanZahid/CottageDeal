@@ -6,11 +6,8 @@ var constants = require('../constants');
 
 const BUCKET_NAME = "cottage-deal-images";
 
-let s3bucket = new AWS.S3({
-    accessKeyId: process.env.AWS_ACCESSKEY,
-    secretAccessKey: process.env.AWS_SECRETKEY,
-    Bucket: BUCKET_NAME
-});
+let s3bucket = new AWS.S3().config.loadFromPath("./api/settings/aws/config.json");
+
 
 /**
  * 
@@ -20,6 +17,8 @@ let s3bucket = new AWS.S3({
 module.exports.getAll = (req, res) => {
     var offset = 0;
     var count = 20;
+
+    console.log(__dirname);
 
     if (req.query && req.query.count) {
         count = parseInt(req.query.count, 10);
