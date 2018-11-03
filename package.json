@@ -4,7 +4,7 @@
   "description": "MEAN stack practice",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "set AWS_ACCESSKEY=AKIAJJFQP54MT5AKCW7A && set AWS_SECRETKEY=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 && nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

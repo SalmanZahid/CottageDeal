@@ -7,12 +7,10 @@ var constants = require('../constants');
 const BUCKET_NAME = "cottage-deal-images";
 
 let s3bucket = new AWS.S3({
-    accessKeyId: "",
-    secretAccessKey: "",
+    accessKeyId: process.env.AWS_ACCESSKEY,
+    secretAccessKey: process.env.AWS_SECRETKEY,
     Bucket: BUCKET_NAME
 });
-
-// TODO Add and Update deals with File Uploading
 
 /**
  * 
@@ -182,51 +180,6 @@ module.exports.upload = async (req, res) => {
         });
 }
 
-module.exports.removeImage = async (req, res) => {
-    Deal.findOne({
-        dealId: req.params.dealId,
-        user: req.user.userId
-    }, (error, deal) => {
-
-        if (!deal) {
-            return res.sendStatus(404);
-        }
-
-        var image = deal.images.find(image => image.imageId == req.params.imageId);
-
-        if (!image) {
-            return res.status(404).json({
-                message: "Image doesn't exist with this id"
-            });
-        }
-
-        var onFileRemoveComplete = function () {
-            deal.images = deal.images.filter(el => {
-                return el.imageId != image.imageId
-            });
-            deal.save(function (err) {
-                if (err) {
-                    return next(err);
-                }
-                res.status(200).json({
-                    success: "Successfully removed image."
-                });
-            });
-        }
-
-        var params = {
-            Bucket: BUCKET_NAME,
-            Key: image['imageKey']
-        };
-
-        s3bucket.deleteObject(params, function (err, _) {
-            if (err) {
-                return next(err);
-            }
-            onFileRemoveComplete();
-        });
-    });
-}
 
 // HELPER FUNCTIONS
 const createDeal = (req, res, fileLocations) => {
@@ -375,3 +328,49 @@ const deleteImage = async (imageKey, callback) => {
         }
     });
 };
+
+module.exports.removeImage = async (req, res) => {
+    Deal.findOne({
+        dealId: req.params.dealId,
+        user: req.user.userId
+    }, (error, deal) => {
+
+        if (!deal) {
+            return res.sendStatus(404);
+        }
+
+        var image = deal.images.find(image => image.imageId == req.params.imageId);
+
+        if (!image) {
+            return res.status(404).json({
+                message: "Image doesn't exist with this id"
+            });
+        }
+
+        var onFileRemoveComplete = function () {
+            deal.images = deal.images.filter(el => {
+                return el.imageId != image.imageId
+            });
+            deal.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.status(200).json({
+                    success: "Successfully removed image."
+                });
+            });
+        }
+
+        var params = {
+            Bucket: BUCKET_NAME,
+            Key: image['imageKey']
+        };
+
+        s3bucket.deleteObject(params, function (err, _) {
+            if (err) {
+                return next(err);
+            }
+            onFileRemoveComplete();
+        });
+    });
+}

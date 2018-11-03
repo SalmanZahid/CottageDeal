@@ -57,7 +57,7 @@ var dealSchema = mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: new Date()
+        default: new Date().getUTCDate()
     },
     updatedAt: {
         type: Date

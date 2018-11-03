@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
-var connectionString = "mongodb://localhost:27017/cottages";
+var connectionString = 'mongodb://user_1:user1@cottagedeal-shard-00-00-6xyiq.mongodb.net:27017,cottagedeal-shard-00-01-6xyiq.mongodb.net:27017,cottagedeal-shard-00-02-6xyiq.mongodb.net:27017/test?ssl=true&replicaSet=CottageDeal-shard-0&authSource=admin&retryWrites=true';
 
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, {
+    useNewUrlParser: true
+});
 
 // CONNECTED EVENT
 mongoose.connection.on("connected", function () {
