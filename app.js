@@ -34,5 +34,5 @@ app.get('/', function (req, res) {
 });
 
 // SET AND LISTEN TO PORT
-app.set('port', 3000);
+app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'));
