@@ -201,7 +201,7 @@ const createDeal = (req, res, fileLocations) => {
             ]
         },
         user: req.user.userId,
-    }, function (err, _) {
+    }, function (err, deal) {
         if (err) {
             console.log("Error creating deal " + err);
             res
@@ -212,7 +212,10 @@ const createDeal = (req, res, fileLocations) => {
             res
                 .status(200)
                 .json({
-                    message: "Successfully created"
+                    message: "Successfully created",
+                    deal: {
+                        dealId: deal.dealId
+                    }
                 });
         }
     });
