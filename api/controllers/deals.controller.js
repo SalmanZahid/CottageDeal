@@ -6,8 +6,10 @@ var constants = require('../constants');
 
 const BUCKET_NAME = "cottage-deal-images";
 
-let s3bucket = new AWS.S3().config.loadFromPath("./api/settings/aws/config.json");
+// LOAD AWS Configuration
+AWS.config.loadFromPath("./api/settings/aws/config.json");
 
+let s3bucket = new AWS.S3();
 
 /**
  * 
@@ -182,6 +184,7 @@ module.exports.upload = async (req, res) => {
 
 // HELPER FUNCTIONS
 const createDeal = (req, res, fileLocations) => {
+    console.log("Creating Deal")
     Deal.create({
         name: req.body.name,
         description: req.body.description,
@@ -264,6 +267,7 @@ const uploadImages = async (req, res, callback) => {
     var fileLocations = [];
 
     if (req.files) {
+        console.log("In uploading")
         await s3bucket.createBucket(function () {
             var ResponseData = [];
             file.map((item) => {
