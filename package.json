@@ -21,7 +21,7 @@
     "angular": "^1.5.6",
     "angular-route": "^1.5.6",
     "aws-sdk": "^2.338.0",
-    "bcrypt": "^3.0.1",
+    "bcrypt": "2.0.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "crypto-random-string": "^1.0.0",
